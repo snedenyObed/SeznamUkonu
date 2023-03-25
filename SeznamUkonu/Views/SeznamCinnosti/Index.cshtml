@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SeznamUkonu.Models.SeznamCinnosti>
+
+@{
+    ViewData["Title"] = "Seznam činností";
+}
+
+<h4>Tvé činnosti</h4>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Vytvořit nový zápis</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kdy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JmenoCinnosti)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Podrobnosti)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kdy)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">
+                @Html.DisplayFor(modelItem => item.JmenoCinnosti)
+                </a>
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Podrobnosti)
+            </td>*@
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Upravit zápis</a> |*@
+                <a class="btn btn-warning m-1" asp-action="Details" asp-route-id="@item.Id">Podrobnosti zápisu</a> |
+                <a class="btn btn-danger m-1" asp-action="Delete" asp-route-id="@item.Id">Odstranit zápis</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

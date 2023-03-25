@@ -1,0 +1,41 @@
+﻿@model SeznamUkonu.Models.SeznamCinnosti
+
+@{
+    ViewData["Title"] = "Přidat činnost";
+}
+
+<h4>Zadej novou činnost</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Kdy" class="control-label">Termín činnosti</label>
+                <input asp-for="Kdy" class="form-control" />
+                <span asp-validation-for="Kdy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JmenoCinnosti" class="control-label">Jméno činnosti</label>
+                <input asp-for="JmenoCinnosti" class="form-control" />
+                <span asp-validation-for="JmenoCinnosti" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Podrobnosti" class="control-label">Stručný popis o co jde</label>
+                <input asp-for="Podrobnosti" class="form-control" />
+                <span asp-validation-for="Podrobnosti" class="text-danger"></span>
+            </div>
+            <div class="form-group m-1">
+                <input type="submit" value="Vytvořit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-secondary m-1" asp-action="Index">Zpět na hlavní stránku</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
