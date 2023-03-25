@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Kdy)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">
+                <a asp-action="Details" asp-route-id="@item.Id">
                 @Html.DisplayFor(modelItem => item.JmenoCinnosti)
                 </a>
             </td>
@@ -39,8 +39,8 @@
                 @Html.DisplayFor(modelItem => item.Podrobnosti)
             </td>*@
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Id">Upravit zápis</a> |*@
-                <a class="btn btn-warning m-1" asp-action="Details" asp-route-id="@item.Id">Podrobnosti zápisu</a> |
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Upravit zápis</a> |
+                @*<a class="btn btn-warning m-1" asp-action="Details" asp-route-id="@item.Id">Podrobnosti zápisu</a> |*@
                 <a class="btn btn-danger m-1" asp-action="Delete" asp-route-id="@item.Id">Odstranit zápis</a>
             </td>
         </tr>
