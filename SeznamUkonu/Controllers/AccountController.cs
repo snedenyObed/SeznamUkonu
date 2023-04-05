@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeznamUkonu.Models;
 
@@ -57,5 +58,34 @@ namespace SeznamUkonu.Controllers
 			await signInManager.SignOutAsync();
 			return RedirectToAction(nameof(HomeController.Index), "Home");
 		}
-	}
+        [HttpGet]
+        public IActionResult Register(string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+                var result = await userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToLocal(returnUrl);
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+
+            return View(model);
+        }
+    }
 }

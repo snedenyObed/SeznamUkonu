@@ -1,34 +1,37 @@
 ﻿@model SeznamUkonu.Models.SeznamCinnosti
 
 @{
-    ViewData["Title"] = "Podrobnosti";
+	ViewData["Title"] = "Podrobnosti";
 }
 
 <div>
-    <h4>Detail zápisu</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Kdy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Kdy)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.JmenoCinnosti)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.JmenoCinnosti)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Podrobnosti)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Podrobnosti)
-        </dd>
-    </dl>
+	<h4>Detail zápisu</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Kdy)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Kdy)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.JmenoCinnosti)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.JmenoCinnosti)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Podrobnosti)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Podrobnosti)
+		</dd>
+	</dl>
 </div>
-<div>
-    <a class="btn btn-warning m-1" asp-action="Edit" asp-route-id="@Model?.Id">Upravit</a> |
-    <a class="btn btn-secondary m-1" asp-action="Index">Zpět</a>
-</div>
+@if (User.IsInRole("admin"))
+{
+	<div>
+		<a class="btn btn-warning m-1" asp-action="Edit" asp-route-id="@Model?.Id">Upravit</a> |
+		<a class="btn btn-secondary m-1" asp-action="Index">Zpět</a>
+	</div>
+}
